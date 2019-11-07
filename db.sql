@@ -1,0 +1,1 @@
+INSERT INTO `usuario` (`nombre`, `password`, `direccion`, `correo`, `telefono`) VALUES ('Fernando', 'fernando', 'recogidas', 'sanchesgames@gmail.com', '655644633');

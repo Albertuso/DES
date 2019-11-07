@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+  <head>
+    <title>Administracion del carrito</title>
+  </head>
+<body>
+<?php
+$pedido=ProductoRepo::getPedidos($_SESSION['user']->getNombre());//para que se actualice conforme se agregue
+echo'<h2> Items registrados en el sistema pendientes de confirmar la compra:</h2>';     
+		for($i=0;$i<count($pedido);$i++){
+			echo'<p> Usuario Num:'.($i+1).'<br>
+			producto:'.$pedido[$i]['nombre'].'<br>
+			cantidad:'.$pedido[$i]['direccion'].'<br>';
+		}
+ 	echo "<p align='left'>Hola ".$_SESSION['user']->getNombre()."- <a href='index.php?comprar=1&usuario=".$_SESSION['user']->getNombre()."'>Confirmar la compra</a></p><br/>";
+?>
+</body>
+</html>

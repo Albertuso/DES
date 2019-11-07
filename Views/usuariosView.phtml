@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+  <head>
+    <title>Administracion de usuarios</title>
+  </head>
+<body>
+<?php
+if($_SESSION['user']->getRol()!=0){
+$usuarios=ProductoRepo::getUsuarios();//para que se actualice conforme se agregue
+echo'<h2> Usuarios registrados en el sistema:</h2>';     
+		for($i=0;$i<count($usuarios);$i++){
+			echo'<p> Usuario Num:'.($i+1).'<br>
+			nombre:'.$usuarios[$i]['nombre'].'<br>
+			direccion:'.$usuarios[$i]['direccion'].'<br>		
+			e-mail:'.$usuarios[$i]['correo'].'<br>			
+			telefono:'.$usuarios[$i]['telefono'].'<br>';
+			echo "Gestion administrador ->";
+			echo $usuarios[$i]['rol']==0?"<a href='index.php?admin=".$usuarios[$i]['nombre']."&rol=1'>Hacer Admin</a>":"<a href='index.php?admin=".$usuarios[$i]['nombre']."&rol=0'>Quitar Admin</a>" ;
+			}
+		}
+ 	echo "<p align='left'>Hola ".$_SESSION['user']->getNombre()."- <a href='index.php?logout=1'>Salir</a></p><br/>";
+?>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+  <head>
+    <title>Producto: <?$_GET['producto']?> </title>
+  </head>
+<body>
+<?php
+echo'<h2> Producto seleccionado:</h2>';
+	$consulta="SELECT * FROM comic WHERE titulo='".$_GET['comic']."'";
+	$result=$db->query($consulta);
+	if($dato=$result->fetch_assoc()){
+			if($dato['portada']==NULL){
+				$foto='prohibido.jpg';
+			}else{
+				$foto=$dato['portada'];
+			}
+			echo'<p>
+			Nombre:'.$dato['titulo'].'<br>
+			Numero de paginas:'.$dato['numPag'].'<br>
+			Editorial:'.$dato['editora'].'<br>			
+		    fotografia: <img src="./Views/img/'.$foto.'" height="100px" width="100px"><br></p><br>
+		    <a href="index.php">volver</a>';
+	}	
+?>
+</body>
+</html>

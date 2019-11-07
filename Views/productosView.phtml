@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+  <head>
+    <title>Compra Nuestros Productos</title>
+  </head>
+<body>
+<?php
+$productos=ProductoRepo::getProductos();//para actualizar conforme se insertan
+echo'<h2> Productos registrados en el sistema:</h2>';
+	for($i=0;$i<count($productos);$i++){
+		echo'<p> Producto Numero:'.($i+1).'<br/>
+		nombre:'.$productos[$i]['nombre'].'<br>
+		fotografia: <img src="./Views/img/'.$productos[$i]['foto'].'" height="100px" width="100px"></a><br></p>
+		precio:'.$productos[$i]['precio'].'<br>';
+
+		if(isset($_SESSION['user'])){
+			echo'<form action="index.php" method="POST">
+			<input type="hidden" name="product" value="'.$productos[$i]['nombre'].'">
+			<input type="number" name="ccc" min="0" max="'.$productos[$i]['cantidad'].'"><input type="submit" value="agregar al carrito"></form>';
+		}
+	}
+?>
+</body>
+</html>
